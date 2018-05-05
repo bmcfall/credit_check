@@ -12,12 +12,6 @@ class ValidateTest < Minitest::Test
     assert_instance_of Validate, validation
   end
 
-  def test_validate_validator_exists
-    validation = Validate.new("5541808923795240")
-
-    assert_equal [], validation.validator
-  end
-
   def test_validate_numbers
     validation = Validate.new("5541808923795240")
 
@@ -31,9 +25,25 @@ class ValidateTest < Minitest::Test
   end
 
   def test_sum_double_digits
-    skip
     validation = Validate.new("5541808923795240")
-    assert_equal [0, 8, 2, 10, 9, 14, 3, 4, 9, 16, 0, 16, 1, 8, 5, 10], validation.sum_doubled
-    binding.pry
+    assert_equal [0, 8, 2, 1, 9, 5, 3, 4, 9, 7, 0, 7, 1, 8, 5, 1], validation.sum_doubled
+  end
+
+  def test_total
+    validation = Validate.new("5541808923795240")
+
+    assert_equal 70, validation.total
+  end
+
+  def test_valid_account_number
+    validation = Validate.new("5541808923795240")
+
+    assert_equal "valid", validation.validate
+  end
+
+  def test_invalid_account_number
+    validation = Validate.new("5541801923795240")
+
+    assert_equal "invalid", validation.validate
   end
 end
