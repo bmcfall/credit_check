@@ -6,7 +6,6 @@ class Validate
               :double
 
   def initialize(numbers)
-    #Converting the string numbers into integers; .digits separates the string and reverses the numbers.
     @numbers = numbers.to_i.digits
   end
 
